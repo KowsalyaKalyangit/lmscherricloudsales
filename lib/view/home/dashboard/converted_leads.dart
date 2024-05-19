@@ -31,12 +31,19 @@ dashboardCategoryController.dashboardCategoryController(statusid: widget.statusi
       
       appBar: AppBar(
         centerTitle: true,
+         automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(Icons.arrow_back,color: screenbackground,),
+        ),
         backgroundColor: appcolor,title: Text(widget.name.toString(),style: toptitleStyle,),),
         body: Obx((){
 if(dashboardCategoryController.isDashboardCategoryLoad.value){
   return Center(child: CircularProgressIndicator(),);
 }
-else if(dashboardCategoryController.getdashboardcategorydetails.isEmpty){
+else if(dashboardCategoryController.getdashboardcategorydetails[0].data.isEmpty){
   return Center(child: Text('No Data Found'),);
 }
 else{

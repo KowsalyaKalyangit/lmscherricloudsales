@@ -7,7 +7,7 @@ import '../../model/Add_proposal/proposal_load_amt_response.dart';
  
 
 class ProposalLoadAmountService {
-  Future proposalLoadAmountService({loadid,subtotal,total}) async {
+  Future proposalLoadAmountService({loadid,itemid,typeid,specid,speedid,travelid,operationid,taxid}) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var staffid = sharedPreferences.getString(Constants.staffid);
     log('enterrrrr');
@@ -15,8 +15,14 @@ class ProposalLoadAmountService {
       var data = {
         "dashboard": "getproposalloadvalue",
         "loadid": loadid??'',
-        "subtotal": subtotal??'',
-        "total": total??''
+        "itemid": itemid??'',
+        "typeid": typeid??'',
+        "specid":specid??'',
+        "speedid":speedid??'',
+        "travelid":travelid??'',
+        "operationid":operationid??'',
+        "taxid":taxid??''
+
       };
       var jsonencode = jsonEncode(data);
 

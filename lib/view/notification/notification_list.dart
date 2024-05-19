@@ -15,27 +15,17 @@ class _NotificationListState extends State<NotificationList> {
   NotificationController notificationController=Get.put(NotificationController());
   @override
   void initState() {
-  notificationController.notificationController();
+ // notificationController.notificationController();
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return Obx((){
-      if(notificationController.isnotificationLoad.value){
-        return Center(child: CircularProgressIndicator(),);
-      }
-      else if(
-        notificationController.getnotification[0].data.isEmpty){
-          return Center(child: Text('No Data Found'));
-        }
-      
-      else {
-     return ListView.builder(
-          itemCount: notificationController.getnotification[0].data.length,
+    return   ListView.builder(
+          itemCount:10,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            var notificationdata=notificationController.getnotification[0].data[index];
+          //  var notificationdata=notificationController.getnotification[0].data[index];
             return Column(
               children: [
                 Center(
@@ -64,7 +54,7 @@ class _NotificationListState extends State<NotificationList> {
                                   radius: 25, // Image radius
                                    child: CircleAvatar(
                                     backgroundColor: appcolor,
-                                    child: Image.asset('assets/images/applogo.png',color: screenbackground,height: 4.5.hp,),
+                                    child: Image.asset('assets/tech/applogo.png',height: 4.5.hp,),
                                    ),
                                 ),
                                 Expanded(
@@ -79,7 +69,7 @@ class _NotificationListState extends State<NotificationList> {
                                           children: [
                                             Flexible(
                                               child: Text(
-                                              notificationdata.staff.toString(),
+                                              'Technaus',
                                                 style: notificationtitle,
                                               ),
                                             ),
@@ -96,7 +86,7 @@ class _NotificationListState extends State<NotificationList> {
                                           children: [
                                             Flexible(
                                               child: Text(
-                                                notificationdata.description.toString(),
+                                              ' TS - Installer Creator Portal Mobile Manual',
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: notificationsubtitle,
@@ -114,7 +104,7 @@ class _NotificationListState extends State<NotificationList> {
                                           children: [
                                             Flexible(
                                               child: Text(
-                                                notificationdata.date,
+                                                '12-03-2023',
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: formhintstyle,
@@ -140,6 +130,6 @@ class _NotificationListState extends State<NotificationList> {
               ],
             );
           });
-  }});
   }
-}
+  }
+

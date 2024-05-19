@@ -16,7 +16,7 @@ class OptionList extends StatefulWidget {
 class _OptionListState extends State<OptionList> {
   var image=['assets/img/lead.png','assets/img/pass.png'];
   var menuoptions = [
-    'CONVERTED LEADS',
+    'TOTAL JOB LIST',
     
     
     'CHANGE PASSWORD',

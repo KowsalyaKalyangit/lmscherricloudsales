@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // loginController.loginController();
     super.initState();
     images = const AssetImage(
-      "assets/images/applogo.png",
+      "assets/tech/applogo.png",
     );
   }
 
@@ -71,15 +71,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Column(
                           children: [
                             Container(
-                              height:15.00.hp,
+                              height:12.00.hp,
                               width: 40.00.wp,
                               decoration: BoxDecoration(
                                   image: DecorationImage(image: images!)),
                             ),
                              SizedBox(height: 1.00.hp),
-                              Text('Professional Elevators Pvt. Ltd', style: heading),
+                              Image.asset('assets/tech/logoname.png',height: 9.0.hp,),
                             SizedBox(height: 00.20.hp),
-                            Text('Welcome Back', style: toptitlelogoStyle),
+                            Text('Welcome Back', style: heading),
                             SizedBox(height: 00.30.hp),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ],
                             ),
                             SizedBox(height: 3.00.hp),
-                            const SocialLogin(),
+                            ///const SocialLogin(),
                             SizedBox(height: 2.00.hp),
                             GestureDetector(
                               onTap: () {
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             fontSize: 9.00.sp,
-                                            color: appcolor,
+                                            color: appcolor1,
                                             fontWeight: FontWeight.w600)),
                                   )
                                 ],

@@ -10,12 +10,14 @@ import 'package:leadingmanagementsystem/service/add_proposal_service/proposal_re
 import '../../model/Add_proposal/proposal_status_response.dart';
 import '../../model/proposal_response/proposal_leadtype_response.dart';
 import '../../service/add_proposal_service/proposal_status_service.dart';
+import 'proposal_edit_controller.dart';
 
 class ProposalStatusController extends GetxController{
   List<ProposalStatusModel> _proposalstatus=[];
   List<ProposalStatusModel> get getproposalstatus=>_proposalstatus;
    RxBool isproposalstatusLoad = true.obs;
    ProposalStatusService proposalStatusService=ProposalStatusService();
+   ProposalEditController proposalEditController=Get.put(ProposalEditController());
   Future proposalStatusController() async {
     isproposalstatusLoad(true);
     try {
@@ -25,7 +27,7 @@ class ProposalStatusController extends GetxController{
         _proposalstatus.clear();
         print('res---------------$response');
         _proposalstatus.add(response);
-       
+       //proposalEditController.statusid(_proposalstatus.first.data.first.value.toString());
            
       
         isproposalstatusLoad(false);

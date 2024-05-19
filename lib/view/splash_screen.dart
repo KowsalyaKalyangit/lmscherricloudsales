@@ -81,14 +81,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appcolor,
+      backgroundColor: Color(0xfff4f4f4),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(child: Image.asset("assets/images/applogo.png",height: 12.0.hp,)),
-          SizedBox(height: 1.0.hp,),
-           Text('Professional Elevators Pvt. Ltd', style: toptitleStyle),
+              Center(child: Image.asset("assets/tech/applogo.png",height: 12.0.hp,)),
+           SizedBox(height: 1.0.hp,),
+          Center(child: Image.asset("assets/tech/logoname.png",height: 8.0.hp,)),
+         
+          
 
         ],
       )

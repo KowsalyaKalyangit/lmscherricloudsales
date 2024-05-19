@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:leadingmanagementsystem/allpackages.dart';
+import 'package:leadingmanagementsystem/controller/add_proposal_controller/proposal_edit_controller.dart';
 import 'package:leadingmanagementsystem/utils/common_variable.dart';
 
 import '../../model/Add_proposal/get_addlist_item_response.dart';
@@ -16,6 +17,10 @@ class GetAddItemListController extends GetxController {
      TextEditingController carsize = TextEditingController();
      TextEditingController delivery = TextEditingController();
      TextEditingController erection = TextEditingController();
+     RxString typename=''.obs;
+     RxString taxid=''.obs;
+      RxString taxamount=''.obs;
+     ProposalEditController proposalEditController=Get.put(ProposalEditController());
   Future getAddItemListController({liftid}) async {
     isadditemlistLoad(true);
     try {
@@ -26,10 +31,22 @@ class GetAddItemListController extends GetxController {
         _additemlist.clear();
         print('res---------------$response');
         _additemlist.add(response);
+     proposalEditController.typename(_additemlist.first.data.first.typename.toString());
+       proposalEditController.specificationname(_additemlist.first.data.first.specificationname.toString());
+         proposalEditController.passenger(_additemlist.first.data.first.passenger.toString());
+           proposalEditController.carenclosure(_additemlist.first.data.first.carEnclosure.toString());
+             proposalEditController.hoistwaydoors(_additemlist.first.data.first.hoistwayDoors.toString());
+               proposalEditController.entrance(_additemlist.first.data.first.entrances.toString());
+                 proposalEditController.dooroperation(_additemlist.first.data.first.doorOperation.toString());
+                 proposalEditController.subtotal(_additemlist.first.data.first.subtotal.toString());
+                  proposalEditController.total(_additemlist.first.data.first.total.toString());
         commonVariable.commonapidata.value=_additemlist[0].data[0].subtotal.toString();
           commonVariable.commontotal.value=_additemlist[0].data[0].total.toString();
           powersupply.text=_additemlist[0].data[0].powerSupply.toString();
+taxid.value=_additemlist[0].data[0].taxid.toString();
+taxamount.value=_additemlist[0].data[0].totaltax.toString();
 
+log(taxid.value.toString());
         isadditemlistLoad(false);
       } else {
         isadditemlistLoad(false);

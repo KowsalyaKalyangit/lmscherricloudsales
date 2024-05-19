@@ -10,7 +10,7 @@ import '../allpackages.dart';
 class AddLeadsService {
   Future addLeadsService(
       {name,position,email,phone,leadvalue,company,description,
-      address,city,state,country,zipcode,status,source
+      address,city,state,country,zipcode,status,source,
       }) async {
          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var staffid = sharedPreferences.getString(Constants.staffid);
@@ -32,7 +32,8 @@ class AddLeadsService {
     "country":country??'',
     "zipcode":zipcode??"",
     "status":status??'',
-    "source":source??''
+    "source":source??'',
+    
         
       };
       var jsonencode=jsonEncode(data);

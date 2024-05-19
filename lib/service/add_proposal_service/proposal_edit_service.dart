@@ -7,11 +7,14 @@ import '../../model/Add_proposal/proposal_edit_response.dart';
 
 class ProposalEditService {
   Future proposalEditService({proposalid}) async {
+    //  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    // var proposalid = sharedPreferences.getString(Constants.proposalid);
+    
     log('enterrrrr');
     try {
       var data = {
         "dashboard": "getproposaleditdata",
-        "proposalid": proposalid ?? ''
+        "proposalid":proposalid??''
       };
       var jsonencode = jsonEncode(data);
 
@@ -25,7 +28,8 @@ class ProposalEditService {
       log(response.body.toString());
 
       if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: jsonresponse['message']);
+        Fluttertoast.showToast(msg: jsonresponse['message'].toString());
+          Fluttertoast.showToast(msg: jsonresponse['message'].toString());
         return ProposalEditModel.fromJson(jsonresponse);
       } else {
         Fluttertoast.showToast(msg: jsonresponse['message'].toString());

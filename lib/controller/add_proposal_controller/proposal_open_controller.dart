@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:leadingmanagementsystem/allpackages.dart';
+import 'package:leadingmanagementsystem/controller/add_proposal_controller/proposal_travel_amt_controller.dart';
 import 'package:leadingmanagementsystem/service/add_proposal_service/proposal_stop_service.dart';
 
 import '../../model/Add_proposal/proposal_open_response.dart';
@@ -15,6 +16,7 @@ class ProposalOpenController extends GetxController {
   List<ProposalOpenModel> get getproposalOpen => _proposalOpen;
   RxBool isproposalOpenLoad = true.obs;
   ProposalOpeningService proposalOpeningService = ProposalOpeningService();
+  ProposalTravelAmtController proposalTravelAmtController=Get.put(ProposalTravelAmtController());
   Future proposalOpenController() async {
     isproposalOpenLoad(true);
     try {
@@ -24,6 +26,7 @@ class ProposalOpenController extends GetxController {
         _proposalOpen.clear();
         print('res---------------$response');
         _proposalOpen.add(response);
+        // proposalTravelAmtController.proposalopendata( _proposalOpen.first.data.first.openingid.toString());
 
         isproposalOpenLoad(false);
       } else {

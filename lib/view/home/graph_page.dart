@@ -26,30 +26,20 @@ class _BarChartExampleState extends State<BarChartExample> {
 
   func() async {
      
-    setState(() {
-       graphController.graphController();
-    });
+    // setState(() {
+    //    graphController.graphController();
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (graphController.isnotificationLoad.value) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      } else if (graphController.getnotification.isEmpty) {
-        return Center(
-          child: Text('AUCUNE DONNÉE DISPONIBLE '),
-        );
-      } else {
-        return Column(
+    return  Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Padding(
                padding: const EdgeInsets.only(left:18.0),
-               child: Text('Lead Graph',style: listtitle,),
+               child: Text('Total Work Graph',style: listtitle,),
              ),
              SizedBox(height: 1.0.hp,),
              Padding(
@@ -80,7 +70,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ),
                               ),
                                 SizedBox(width: 1.0.wp,),
-                              Text('Customer',style: listtitlefont,)
+                              Text('Today Job',style: listtitlefont,)
                             ],
                           ),
                         ),
@@ -98,7 +88,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ),
                               ),
                                 SizedBox(width: 1.0.wp,),
-                              Text('Final Status',style: listtitlefont,)
+                              Text('Completed Job',style: listtitlefont,)
                             ],
                                                   ),
                           ),
@@ -122,7 +112,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ),
                               ),
                                 SizedBox(width: 1.0.wp,),
-                              Text('Proposal Submited',style:listtitlefont)
+                              Text('Pending Job',style:listtitlefont)
                             ],
                           ),
                         ),
@@ -140,7 +130,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ),
                               ),
                                 SizedBox(width: 1.0.wp,),
-                              Text('Spoken to Customer',style: listtitlefont,)
+                              Text('Total Work',style: listtitlefont,)
                             ],
                                                   ),
                           ),
@@ -159,8 +149,8 @@ class _BarChartExampleState extends State<BarChartExample> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: 1,
                   itemBuilder: (context, index) {
-                    var data=graphController.getnotification[0].data[index];
-                     var sorteddata=[data[0].count,data[1].count,data[2].count,data[3].count];
+                    // var data=graphController.getnotification[0].data[index];
+                    //  var sorteddata=[data[0].count,data[1].count,data[2].count,data[3].count];
   
   
                   
@@ -176,7 +166,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                       bottom: BorderSide())),
                               alignment: BarChartAlignment.spaceAround,
                               barTouchData: BarTouchData(enabled: false),
-                              maxY: double.parse(sorteddata.last.toString())+1,
+                              maxY: 100,
                             
                               minY: 0,
                               gridData: FlGridData(
@@ -199,7 +189,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                               barGroups: [
                                 BarChartGroupData(x: 0, barRods: [
                                   BarChartRodData(
-                                      toY:  double.parse(data[0].count.toString()),
+                                      toY:  50,
                                       
                                          
                                       width: 10.0.wp,
@@ -208,7 +198,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ]),
                                 BarChartGroupData(x: 1, barRods: [
                                   BarChartRodData(
-                                     toY:  double.parse(data[1].count.toString()),
+                                     toY:  30,
                                      
                                          
                                       width: 10.0.wp,
@@ -218,7 +208,7 @@ class _BarChartExampleState extends State<BarChartExample> {
                                 ]),
                                 BarChartGroupData(x: 2, barRods: [
                                   BarChartRodData(
-                                     toY:  double.parse(data[2].count.toString()),
+                                     toY: 20,
                                        
                                       width: 10.0.wp,
                                       borderRadius: BorderRadius.zero,
@@ -228,7 +218,7 @@ class _BarChartExampleState extends State<BarChartExample> {
 
                                  BarChartGroupData(x: 4, barRods: [
                                   BarChartRodData(
-                                     toY:  double.parse(data[3].count.toString()),
+                                     toY: 10,
                                         
                                       width: 10.0.wp,
                                      
@@ -246,6 +236,6 @@ class _BarChartExampleState extends State<BarChartExample> {
           ],
         );
       }
-    });
+    
   }
-}
+ 

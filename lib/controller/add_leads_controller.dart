@@ -59,9 +59,9 @@ class AddAssignDetailsController extends GetxController {
       Fluttertoast.showToast(msg: 'Please enter user name');
     } else if (position.text.isEmpty) {
       Fluttertoast.showToast(msg: 'Please enter mobile number');
-    } else if (email.text.isEmpty) {
-      Fluttertoast.showToast(msg: 'Please enter emailID');
-    } else if (phone.text.isEmpty) {
+    } 
+    
+    else if (phone.text.isEmpty) {
       Fluttertoast.showToast(msg: 'Please enter companyname');
     } else if (leadsvalue.text.isEmpty) {
       Fluttertoast.showToast(msg: 'Please enter gstnumbr');
@@ -101,7 +101,8 @@ class AddAssignDetailsController extends GetxController {
     country:country,
     zipcode:zipcode.text,
     status:status,
-    source:source);
+    source:source,
+    );
 
         if (response != null) {
           

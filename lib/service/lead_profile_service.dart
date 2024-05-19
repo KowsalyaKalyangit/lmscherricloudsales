@@ -9,7 +9,7 @@ import '../model/leads_profile_response.dart';
  
 
 class LeadProfileService {
-  Future leadProfileService(
+  Future leadProfileService({leadid}
        ) async {
         
     log('enterrrrr');
@@ -18,7 +18,8 @@ class LeadProfileService {
     try {
       var data = {
         "dashboard":"getleadprofiledetails",
-        "staffid":staffid??''
+        "staffid":staffid??'',
+        "leadid":leadid??''
         
       };
         var jsonencode=jsonEncode(data);

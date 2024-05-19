@@ -27,7 +27,7 @@ class MapTrackModel {
         success: json["success"],
         status: json["status"],
         message: json["message"],
-        totalCountry: json["TotalCountry"],
+        totalCountry: json["TotalCountry"]??0,
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
 

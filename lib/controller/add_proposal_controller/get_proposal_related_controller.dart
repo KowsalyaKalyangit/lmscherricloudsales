@@ -23,6 +23,9 @@ class GetProposalRelatedController extends GetxController {
   TextEditingController date = TextEditingController();
   TextEditingController oepntill = TextEditingController();
   TextEditingController leadname = TextEditingController();
+  RxString countryid=''.obs; 
+  RxString leadstatus=''.obs; 
+  
 RxString countryaddlead=''.obs;
   Future getproposalrelatedController({leadid}) async {
    
@@ -44,6 +47,8 @@ RxString countryaddlead=''.obs;
         zip.text = _getproposalrelated[0].data[0].zip;
         tomail.text = _getproposalrelated[0].data[0].toemail;
         phone.text = _getproposalrelated[0].data[0].phone;
+        countryid(_getproposalrelated[0].data[0].countryid.toString());
+          
         date.text =
             '${DateTime.parse(_getproposalrelated[0].data[0].date.toString()).year.toString()}-${DateTime.parse(_getproposalrelated[0].data[0].date.toString()).month.toString()}-${DateTime.parse(_getproposalrelated[0].data[0].date.toString()).day}';
         // date.text = _getproposalrelated[0].data[0].date.toString();

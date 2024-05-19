@@ -12,7 +12,6 @@ class ProposalLoadAmtModel {
     int success;
     String status;
     String message;
-    int totalCount;
     String from;
     List<Datum> data;
 
@@ -20,7 +19,6 @@ class ProposalLoadAmtModel {
         required this.success,
         required this.status,
         required this.message,
-        required this.totalCount,
         required this.from,
         required this.data,
     });
@@ -29,7 +27,6 @@ class ProposalLoadAmtModel {
         success: json["success"],
         status: json["status"],
         message: json["message"],
-        totalCount: json["TotalCount"],
         from: json["From"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
@@ -38,7 +35,6 @@ class ProposalLoadAmtModel {
         "success": success,
         "status": status,
         "message": message,
-        "TotalCount": totalCount,
         "From": from,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
     };
@@ -47,23 +43,27 @@ class ProposalLoadAmtModel {
 class Datum {
     String loadid;
     int subtotal;
+    int taxamount;
     int total;
 
     Datum({
         required this.loadid,
         required this.subtotal,
+        required this.taxamount,
         required this.total,
     });
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         loadid: json["loadid"],
         subtotal: json["subtotal"],
+        taxamount: json["taxamount"],
         total: json["total"],
     );
 
     Map<String, dynamic> toJson() => {
         "loadid": loadid,
         "subtotal": subtotal,
+        "taxamount": taxamount,
         "total": total,
     };
 }

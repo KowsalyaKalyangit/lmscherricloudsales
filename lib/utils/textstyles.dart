@@ -72,9 +72,9 @@ final socialbutton = GoogleFonts.jost(
         fontWeight: FontWeight.w500));
 final listtitle = GoogleFonts.jost(
     textStyle: TextStyle(
-        fontSize: 12.00.sp,
+        fontSize: 10.00.sp,
         color: const Color(0xff000000),
-        fontWeight: FontWeight.w600));
+        fontWeight: FontWeight.w500));
         final listtitlefont = GoogleFonts.jost(
     textStyle: TextStyle(
         fontSize: 10.00.sp,

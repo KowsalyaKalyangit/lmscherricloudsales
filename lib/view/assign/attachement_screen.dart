@@ -24,6 +24,7 @@ class _AttachmentScreenState extends State<AttachmentScreen> {
       Get.put(FileUploadController());
       AttchamentLeadsDetailsController attchamentLeadsDetailsController=AttchamentLeadsDetailsController();
        var fileName;
+       var tagvalue=0;
         
   deleteFunc(data){
     return  showDialog(
@@ -246,7 +247,9 @@ class _AttachmentScreenState extends State<AttachmentScreen> {
              
            
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: (){
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.transparent,
+          onPressed: (){
            showdialogfunc();
          //Get.to(ImageUpload(id: widget.id.toString(),));
        

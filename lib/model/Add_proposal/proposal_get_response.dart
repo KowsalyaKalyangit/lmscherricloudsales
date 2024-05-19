@@ -42,18 +42,20 @@ class ProposalGetModel {
 
 class Datum {
     String proposalid;
+    String leadid;
     String number;
     String subject;
     String total;
-    String date;
-    String opentill;
-    String datecreated;
+    DateTime date;
+    DateTime opentill;
+    DateTime datecreated;
     String status;
     String edit;
     String viewlink;
 
     Datum({
         required this.proposalid,
+        required this.leadid,
         required this.number,
         required this.subject,
         required this.total,
@@ -67,12 +69,13 @@ class Datum {
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         proposalid: json["proposalid"],
+        leadid: json["leadid"],
         number: json["number"],
         subject: json["subject"],
         total: json["total"],
-        date:  json["date"],
-        opentill: json["opentill"],
-        datecreated:  json["datecreated"],
+        date: DateTime.parse(json["date"]),
+        opentill: DateTime.parse(json["opentill"]),
+        datecreated: DateTime.parse(json["datecreated"]),
         status: json["status"],
         edit: json["edit"],
         viewlink: json["viewlink"],
@@ -80,12 +83,13 @@ class Datum {
 
     Map<String, dynamic> toJson() => {
         "proposalid": proposalid,
+        "leadid": leadid,
         "number": number,
         "subject": subject,
         "total": total,
-        "date": date,
-        "opentill":opentill,
-        "datecreated": datecreated,
+        "date": "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
+        "opentill": "${opentill.year.toString().padLeft(4, '0')}-${opentill.month.toString().padLeft(2, '0')}-${opentill.day.toString().padLeft(2, '0')}",
+        "datecreated": datecreated.toIso8601String(),
         "status": status,
         "edit": edit,
         "viewlink": viewlink,

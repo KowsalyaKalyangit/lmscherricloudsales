@@ -14,7 +14,7 @@ class _ProfileSectionState extends State<ProfileSection> {
   ProfileController profileController = Get.put(ProfileController());
   @override
   void initState() {
-    profileController.profileController();
+   
     super.initState();
   }
 
@@ -22,17 +22,7 @@ class _ProfileSectionState extends State<ProfileSection> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
-      child: Obx(() {
-        if (profileController.isProfileLoad.value) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (profileController.getprofiledetails.isEmpty) {
-          return Center(
-            child: Text('No Data Found'),
-          );
-        } else {
-          return Row(
+      child:   Row(
             children: [
               CircleAvatar(
                 backgroundColor: Colors.white,
@@ -42,9 +32,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                   radius: 32.0,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    backgroundImage: NetworkImage(profileController
-                        .getprofiledetails[0].data[0].profileImage
-                        .toString()),
+                    backgroundImage: AssetImage('assets/img/profile.png'),
                     radius: 28.0,
                   ),
                 ),
@@ -56,7 +44,7 @@ class _ProfileSectionState extends State<ProfileSection> {
                     children: [
                       Flexible(
                         child: Text(
-                          "${profileController.name.text.toString()} ${profileController.getprofiledetails[0].data[0].lastname}, \n${profileController.getprofiledetails[0].data[0].role.toString()}",
+                          "Testing\ntesting@gmail.com",
                           style: subtitleStylecolor,
                         ),
                       ),
@@ -91,9 +79,9 @@ class _ProfileSectionState extends State<ProfileSection> {
                     )),
               )
             ],
-          );
+          ));
         }
-      }),
-    );
+     
+     
   }
-}
+

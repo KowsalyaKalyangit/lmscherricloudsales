@@ -1,7 +1,8 @@
 // import 'package:connectivity_plus/connectivity_plus.dart';
 
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+ 
 
+import 'package:leadingmanagementsystem/view/home/job/job_page.dart';
 import 'package:leadingmanagementsystem/view/menu/menu_screen.dart';
 import 'package:location/location.dart';
 
@@ -25,10 +26,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   DateTime selectedDate = DateTime.now();
   bool modalShown = false;
-  GoogleMapController? _mapController;
-  Location _location = Location();
-  LatLng _currentLocation = LatLng(0, 0);
-  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
+   
   String stAddress = '';
   String latitude = 'waiting...';
   String longitude = 'waiting...';
@@ -68,12 +66,12 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'page': const LeadPage(),
     },
-    // {
-    //   'page': const DetailsPage(),
-    // },
     {
-      'page': const NotificationScreen(),
+      'page': const JobPage(),
     },
+    // {
+    //   'page': const NotificationScreen(),
+    // },
     {
       'page': const MenuScreen(),
     },
@@ -86,101 +84,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _initLocationService() async {
-    final _serviceEnabled = await _location.serviceEnabled();
-    if (!_serviceEnabled) {
-      final _serviceRequest = await _location.requestService();
-      if (_serviceRequest != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    final _permissionStatus = await _location.hasPermission();
-    if (_permissionStatus == PermissionStatus.denied) {
-      final _permissionRequest = await _location.requestPermission();
-      if (_permissionRequest != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    _location.onLocationChanged.listen((LocationData locationData) {
-      setState(() {
-        _currentLocation =
-            LatLng(locationData.latitude ?? 0.0, locationData.longitude ?? 0.0);
-        _mapController?.animateCamera(CameraUpdate.newLatLng(_currentLocation));
-      });
-    });
+     
   }
 
   _checkIfModalShouldBeShown() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool shouldShowModal = prefs.getBool('shouldShowModal') ?? true;
 
-    if (shouldShowModal) {
-      _showModal();
-      prefs.setBool('shouldShowModal', false);
-    }
+     
   }
 
-  _showModal() {
-    // Show your modal here
-    showDialog(
-        context: context,
-        builder: (_) => new AlertDialog(
-              insetPadding: EdgeInsets.only(top: 5),
-              contentPadding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              actions: [
-                Center(
-                    child: InkWell(
-                        onTap: () {
-                          setState(() {
-                            print('click');
-                            //fun();
-                            Get.back();
-                          });
-                        },
-                        child: Container(
-                          height: 4.0.hp,
-                          width: 40.0.wp,
-                          decoration: BoxDecoration(
-                              color: teal,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Center(
-                            child: Text('Track on'),
-                          ),
-                        )))
-              ],
-              content: StatefulBuilder(
-                builder: (context, setState) {
-                  // Get available height and width of the build area of this widget. Make a choice depending on the size.
-
-                  return Container(
-                    height: 90.0.hp,
-                    width: 100.0.wp,
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: 2.0.hp),
-                      child: GoogleMap(
-                        markers: markers.values.toSet(),
-                        mapType: MapType.normal,
-                        initialCameraPosition: CameraPosition(
-                          target: _currentLocation,
-                          zoom: 15.0,
-                        ),
-                        onMapCreated: (GoogleMapController controller) {
-                          setState(() {
-                            _mapController = controller;
-                          });
-                        },
-                        myLocationEnabled: true,
-                        myLocationButtonEnabled: true,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ));
-  }
+   
 
 //   fun() async{
 
@@ -377,10 +291,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 BottomNavyBarItem(
                   icon: const Icon(
-                    Icons.report_outlined,
+                    Icons.work,
                     size: 20,
                   ),
-                  title: Text('Notification'),
+                  title: Text('Job'),
                   activeColor: appcolor,
                   textAlign: TextAlign.center,
                 ),

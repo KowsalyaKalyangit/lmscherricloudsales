@@ -135,7 +135,7 @@ class DottedLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.grey
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 

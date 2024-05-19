@@ -12,12 +12,14 @@ class ProposalCreateModel {
     int success;
     String status;
     String message;
+    String emptyField;
     List<Datum> data;
 
     ProposalCreateModel({
         required this.success,
         required this.status,
         required this.message,
+        required this.emptyField,
         required this.data,
     });
 
@@ -25,6 +27,7 @@ class ProposalCreateModel {
         success: json["success"],
         status: json["status"],
         message: json["message"],
+        emptyField: json["EmptyField"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
 
@@ -32,6 +35,7 @@ class ProposalCreateModel {
         "success": success,
         "status": status,
         "message": message,
+        "EmptyField": emptyField,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
     };
 }

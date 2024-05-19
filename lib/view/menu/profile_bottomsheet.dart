@@ -23,15 +23,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
   }
   @override
   Widget build(BuildContext context) {
-     return Obx((){
-       if(profileController.isProfileLoad.value){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          else if(profileController.getprofiledetails.isEmpty){
-            return Center(child: Text('No Data Found'),);
-          }
-          else{
-      return Column(
+     return  Column(
          
         children: [
           // Background screen
@@ -48,7 +40,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                             radius: 32.0,
                             child: CircleAvatar(
                                backgroundColor: Colors.white,
-                              backgroundImage: NetworkImage(profileController.getprofiledetails[0].data[0].profileImage.toString()),
+                              backgroundImage: AssetImage('assets/img/profile.png'),
                               radius: 28.0,
                             ),
                           ),
@@ -302,10 +294,7 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
                                   press: () async {
                                     print('clickkk');
                                     
-                                   await profileController.geteditprofileController(context:context).then((value) {
-                                        
-                                       
-                                   });
+                                   
                                    
                                     Get.back();
                                 
@@ -326,6 +315,6 @@ class _BottomSheetContentState extends State<BottomSheetContent> {
           
         ],
            ))]);
-  }});
+  
   }
 }

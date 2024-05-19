@@ -8,7 +8,7 @@ import '../model/map_track_model.dart';
 class MapTrackService {
   Future mapTrackService(
       {latitude,longitude, 
-      time,flag,logout
+      time,flag,logout, 
       }) async {
          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var staffid = sharedPreferences.getString(Constants.staffid);
@@ -16,7 +16,8 @@ class MapTrackService {
     try {
       var data = {
        "dashboard":"addtemptrack",
-    "staffid":staffid??'',
+"staffid":staffid??'',
+   // "staffid":staffid,
     "latitude":latitude??"",
     "longitude":longitude??'',
     "time":time??"",
@@ -29,12 +30,12 @@ class MapTrackService {
       var jsonencode=jsonEncode(data);
       
       log(jsonencode.toString());
-
+print(jsonencode.toString());
       log(data.toString());
       log('dddddddddddd');
 
       var response =
-          await http.post(Uri.parse('https://cherritech.us/proelevators/api/getDetails.php'), body: jsonencode);
+          await http.post(Uri.parse(Urls.lead_country), body: jsonencode);
           log('fffffffff');
 
       var jsonresponse = jsonDecode(response.body);

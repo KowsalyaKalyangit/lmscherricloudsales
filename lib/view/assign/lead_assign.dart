@@ -1,4 +1,4 @@
-import 'dart:math';
+ 
 
 import 'package:flutter/material.dart';
 import 'package:leadingmanagementsystem/controller/add_leads_controller.dart';
@@ -176,7 +176,7 @@ setState(() {
                 SizedBox(
                   height: 1.0.hp,
                 ),
-              Text('Email*',style: listtitle,),
+              Text('Email',style: listtitle,),
                 SizedBox(
                   height: 1.0.hp,
                 ),

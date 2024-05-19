@@ -5,13 +5,21 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:leadingmanagementsystem/service/map_service.dart';
+import 'package:leadingmanagementsystem/view/home/map.dart';
 
 import 'dart:async';
 import 'dart:developer';
 import 'dart:ui';
 
+ 
+import 'package:location/location.dart';
+
+import '../allpackages.dart';
+Location location = new Location();
+LocationData ?_locationData;
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
+  
 
   await service.configure(
     androidConfiguration: AndroidConfiguration(
@@ -21,18 +29,19 @@ Future<void> initializeService() async {
       autoStart: false,
       isForegroundMode: true,
     ),
-    iosConfiguration: IosConfiguration(
-      // auto start service
-      autoStart: true,
-
-      // this will be executed when app is in foreground in separated isolate
-      onForeground: onStart,
-
-      // you have to enable background fetch capability on xcode project
-    ),
+     iosConfiguration: IosConfiguration(
+        onBackground: iosBackground,
+        onForeground: onStart
+      ),
   );
 }
+@pragma("vm:entry-point")
+Future<bool> iosBackground(ServiceInstance service)async{
+  WidgetsFlutterBinding.ensureInitialized();
+  DartPluginRegistrant.ensureInitialized();
 
+  return true;
+}
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) async {
   // Only available for flutter 3.0.0 and later
@@ -54,6 +63,8 @@ void onStart(ServiceInstance service) async {
     log("stopservice listen--->$event");
     service.stopSelf();
   });
+  //kk
+  
   //bring to foreground
   Timer.periodic(const Duration(seconds: 5), (timer) async {
     Position? currentPosition;
@@ -73,6 +84,20 @@ void onStart(ServiceInstance service) async {
         }
       }
     }
+
+    print('iosapp');
+    location.isBackgroundModeEnabled();
+    _locationData = await location.getLocation(
+      
+    );
+     
+     await MapTrackService().mapTrackService(
+          latitude: "_locationData!.latitude.toString()",
+          longitude:"_locationData!.longitude.toString()",
+          time: convertedDateTimestop.toString(),
+          flag: 'address',
+          logout: 'start');
+    
     if (currentPosition != null) {
       /// you can see this log in logcat
       log('FLUTTER BACKGROUND SERVICE: ${DateTime.now()}');
@@ -125,6 +150,7 @@ Future<bool> handleLocationPermission() async {
       return false;
     }
     if (permission == LocationPermission.deniedForever) {
+       serviceEnabled = await Geolocator.isLocationServiceEnabled(); //kowsi
       Fluttertoast.showToast(
           msg:
               'Location permissions are permanently denied, we cannot request permissions.');

@@ -46,7 +46,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
   _getAppVersion();
-  ProfileController().profileController();
+  // ProfileController().profileController();
     super.initState();
   }
   @override
@@ -89,12 +89,12 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                      InkWell(
                 onTap: () async{
-                     Uri mail = Uri.parse("https://cherritech.us/proelevators/about.php");
-                      if (await launchUrl(mail)) {
-                          //email app opened
-                      }else{
-                          //
-                      }
+                    //  Uri mail = Uri.parse("https://professionalelevators.in/about.php");
+                    //   if (await launchUrl(mail)) {
+                    //       //email app opened
+                    //   }else{
+                    //       //
+                    //   }
                  
                 },
                 child: Container(
@@ -134,12 +134,12 @@ const SizedBox(
                   print('clickkk');
                   
                   
-                   Uri mail = Uri.parse("https://cherritech.us/proelevators/contactus.php");
-                      if (await launchUrl(mail)) {
-                          //email app opened
-                      }else{
-                          //
-                      }
+                  //  Uri mail = Uri.parse("https://professionalelevators.in/contactus.php");
+                  //     if (await launchUrl(mail)) {
+                  //         //email app opened
+                  //     }else{
+                  //         //
+                  //     }
                   
                 },
                 child: Container(
@@ -211,15 +211,15 @@ const SizedBox(
                   print('clickkk');
                   
                   
-                   String email = Uri.encodeComponent("info@professionalelevators.com");
-                      String subject = Uri.encodeComponent("Hello");
-                      String body = Uri.encodeComponent("Welcome to professionalelevators");
-                        Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
-                      if (await launchUrl(mail)) {
-                          //email app opened
-                      }else{
-                          //email app is not opened
-                      }
+                  //  String email = Uri.encodeComponent("info@professionalelevators.com");
+                  //     String subject = Uri.encodeComponent("Hello");
+                  //     String body = Uri.encodeComponent("Welcome to professionalelevators");
+                  //       Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
+                  //     if (await launchUrl(mail)) {
+                  //         //email app opened
+                  //     }else{
+                  //         //email app is not opened
+                  //     }
                   
                 },
                 child: Container(
@@ -238,7 +238,7 @@ const SizedBox(
                       Container(
                         width: 60.0.wp,
                         child: Text(
-                         'info@professionalelevators.com',
+                         'technaus@gmail.com',
                           style: menuprofiloption,
                         ),
                       ),
@@ -258,12 +258,12 @@ const SizedBox(
                   print('clickkk');
                   
                   
-                   Uri mail = Uri.parse("https://www.professionalelevators.com/");
-                      if (await launchUrl(mail)) {
-                          //email app opened
-                      }else{
-                          //
-                      }
+                  //  Uri mail = Uri.parse("https://www.professionalelevators.com/");
+                  //     if (await launchUrl(mail)) {
+                  //         //email app opened
+                  //     }else{
+                  //         //
+                  //     }
                   
                 },
                 child: Container(
@@ -282,7 +282,7 @@ const SizedBox(
                       Container(
                         width: 60.0.wp,
                         child: Text(
-                         'www.professionalelevators.com',
+                         'www.technaus.com',
                           style: GoogleFonts.jost(
     textStyle: TextStyle(
         fontSize: 9.00.sp,
@@ -322,7 +322,7 @@ const SizedBox(
                            }) ;
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: logocolor,
+                            backgroundColor: logocolor,
                             elevation: 0,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(5),

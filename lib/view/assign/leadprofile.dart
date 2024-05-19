@@ -39,22 +39,23 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
     log('dkfnjdshfjksl');
    
    
-    leadProfileController.leadprofileController();
+    leadProfileController.leadprofileController(leadid: widget.id.toString());
+    log('kkkkkkkk');
      log(leadProfileController.countryname.value.toString());
     addAssignDetailsController.getCountry().then((value) {
       setState(() {
        addAssignDetailsController
-            .getprofileUpdatecountry[0].data[0].countryName; 
+            .getprofileUpdatecountry[0].data[0].countryId.toString(); 
       });
     });
     addAssignDetailsController.getStatus().then((value) {
     setState(() {
-       addAssignDetailsController.getstatusLead[0].data[0].name;
+       addAssignDetailsController.getstatusLead[0].data[0].id;
     });
     });
     addAssignDetailsController.getSourceLeads().then((value) {
        setState(() {
-         addAssignDetailsController.getSourceLead[0].data[0].name;
+         addAssignDetailsController.getSourceLead[0].data[0].id;
        });
     });
   }
@@ -66,17 +67,17 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(() {
-        if (leadProfileController.isLeadsProfileLoad.value ||
-            addAssignDetailsController.isCountryLoading.value ||
-            addAssignDetailsController.isStatusLoading.value ||
-            addAssignDetailsController.isSourceLoading.value) {
+        if (leadProfileController.isLeadsProfileLoad.value ||addAssignDetailsController.isSourceLoading.value
+             ) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (leadProfileController.getleadprofile.isEmpty ||
+        } else if (leadProfileController.getleadprofile[0].data.isEmpty ||
             addAssignDetailsController.getprofileUpdatecountry.isEmpty ||
             addAssignDetailsController.getstatusLead.isEmpty ||
-            addAssignDetailsController.getstatusLead.isEmpty) {
+            addAssignDetailsController.getstatusLead.isEmpty||
+            addAssignDetailsController.getSourceLead.isEmpty
+            ) {
           return Center(
             child: Text('No data found'),
           );
@@ -599,7 +600,7 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                   SizedBox(
                     height: 1.0.hp,
                   ),
-         leadProfileController.countryname.value==null|| leadProfileController.countryname.value.isEmpty|| leadProfileController.countryname.value==''?Container():          Row(
+             Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
@@ -615,7 +616,7 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
-                              value:  leadProfileController.countryname.value,
+                              value:leadProfileController.countryname.value.isEmpty&&leadProfileController.countryname.value==''?null:leadProfileController.countryname.value,
                               style: GoogleFonts.jost(
                                   textStyle: TextStyle(
                                       fontSize: 10.00.sp,
@@ -653,7 +654,7 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                                       .getprofileUpdatecountry[0].data
                                       .map<DropdownMenuItem<String>>((value) {
                                       return DropdownMenuItem<String>(
-                                        value: value.countryName,
+                                        value: value.countryId,
                                         child: Container(
                                             margin: const EdgeInsets.only(
                                                 left: 0, right: 4),
@@ -731,71 +732,46 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                   SizedBox(
                     height: 1.0.hp,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          height: 7.00.hp,
-                          width: 86.00.wp,
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          decoration: BoxDecoration(
+                   Container(
+                  
+                    height: 7.00.hp, width: 100.00.wp,
+                    // padding: const EdgeInsets.only(
+                    //   left: 20,
+                    //   right: 20,
+                    // ),
+                    child: TextFormField(
+                      enabled: false,
+                      controller: leadProfileController.statusname,
+                      
+                      style: GoogleFonts.jost(
+                          textStyle: TextStyle(
+                              fontSize: 10.00.sp,
+                              color: forminputcolor,
+                              fontWeight: FontWeight.w500)),
+                      decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
-                            border: Border.all(
-                              color: const Color(0xFFECE9E9),
-                              width: MediaQuery.of(context).size.height * 0.001,
-                            ),
+                            borderSide:
+                                const BorderSide(color: appcolor, width: 1),
                           ),
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              value: leadProfileController.status.value,
-                              style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
-                                      fontSize: 10.00.sp,
-                                      color: forminputcolor,
-                                      fontWeight: FontWeight.w500)),
-                              hint: Text('status',
-                                  style: GoogleFonts.jost(
-                                      textStyle: TextStyle(
-                                          fontSize: 10.00.sp,
-                                          color: formhintcolor,
-                                          fontWeight: FontWeight.w500))),
-                              onChanged: (newValue) {
-                                setState(() {
-                                  if (newValue != null) {
-                                    leadProfileController.status.value = newValue.toString();
-                                    print('newwvalue');
-                                    print(newValue.toString());
-                                  }
-                                });
-                              },
-                              icon: Icon(
-                                Icons.arrow_drop_down,
-                                size: 20,
-                                color: const Color(0xFF737070),
-                              ),
-                              items: addAssignDetailsController
-                                      .getstatusLead[0].data.isEmpty
-                                  ? []
-                                  : addAssignDetailsController
-                                      .getstatusLead[0].data
-                                      .map<DropdownMenuItem<String>>((value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value.name.toString(),
-                                        child: Container(
-                                            margin: const EdgeInsets.only(
-                                                left: 0, right: 4),
-                                            child: Text(value.name.toString(),
-                                                style: GoogleFonts.jost(
-                                                    textStyle: TextStyle(
-                                                        fontSize: 10.00.sp,
-                                                        color: forminputcolor,
-                                                        fontWeight:
-                                                            FontWeight.w500)))),
-                                      );
-                                    }).toList(),
-                            ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5.0),
+                            borderSide: BorderSide(
+                                color: const Color(0xffC6C6C6).withOpacity(0.5),
+                                width: 1),
+                          ),
+                          fillColor:   appcolor.withOpacity(0.2),
+                         // hintText: 'Enter your zipcode',
+                          contentPadding: const EdgeInsets.only(left: 10),
+                          hintStyle: GoogleFonts.jost(
+                              textStyle: TextStyle(
+                                  fontSize: 10.00.sp,
+                                  color: formhintcolor,
+                                  fontWeight: FontWeight.w500)),
+                          border: const OutlineInputBorder(
+                            gapPadding: 4,
                           )),
-                    ],
+                    ),
                   ),
                   SizedBox(
                     height: 1.0.hp,
@@ -826,13 +802,13 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                           ),
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
-                              value: leadProfileController.source.value,
+                              value: leadProfileController.source.value.isEmpty?null:leadProfileController.source.value,
                               style: GoogleFonts.jost(
                                   textStyle: TextStyle(
                                       fontSize: 10.00.sp,
                                       color: forminputcolor,
                                       fontWeight: FontWeight.w500)),
-                              hint: Text('status',
+                              hint: Text('source',
                                   style: GoogleFonts.jost(
                                       textStyle: TextStyle(
                                           fontSize: 10.00.sp,
@@ -853,13 +829,13 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                                 color: const Color(0xFF737070),
                               ),
                               items: addAssignDetailsController
-                                      .getstatusLead[0].data.isEmpty
+                                      .getSourceLead[0].data.isEmpty
                                   ? []
                                   : addAssignDetailsController
                                       .getSourceLead[0].data
                                       .map<DropdownMenuItem<String>>((value) {
                                       return DropdownMenuItem<String>(
-                                        value: value.name.toString(),
+                                        value: value.id.toString(),
                                         child: Container(
                                             margin: const EdgeInsets.only(
                                                 left: 0, right: 4),
@@ -881,7 +857,9 @@ class _LeadProfilePageState extends State<LeadProfilePage> {
                     child: ButtonIconButton(
                       press: () async {
               setState(() {
-                         leadProfileController.leadprofileEditController(leadid: widget.id.toString());
+                         leadProfileController.leadprofileEditController(
+                          
+                          leadid: widget.id.toString(),);
               });
                       },
                       bgcolor: appcolor,

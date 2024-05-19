@@ -46,8 +46,6 @@ class GetAddListItemModel {
 
 class Datum {
     String id;
-    String subtotal;
-    String total;
     String typeid;
     String specificationid;
     String floorid;
@@ -60,11 +58,13 @@ class Datum {
     String entrances;
     String doorOperation;
     String powerSupply;
+    String taxid;
+    int subtotal;
+    int totaltax;
+    int total;
 
     Datum({
         required this.id,
-        required this.subtotal,
-        required this.total,
         required this.typeid,
         required this.specificationid,
         required this.floorid,
@@ -77,12 +77,14 @@ class Datum {
         required this.entrances,
         required this.doorOperation,
         required this.powerSupply,
+        required this.taxid,
+        required this.subtotal,
+        required this.totaltax,
+        required this.total,
     });
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
-        subtotal: json["subtotal"],
-        total: json["total"],
         typeid: json["typeid"],
         specificationid: json["specificationid"],
         floorid: json["floorid"],
@@ -95,12 +97,14 @@ class Datum {
         entrances: json["entrances"],
         doorOperation: json["door_operation"],
         powerSupply: json["power_supply"],
+        taxid: json["taxid"],
+        subtotal: json["subtotal"],
+        totaltax: json["totaltax"],
+        total: json["total"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "subtotal": subtotal,
-        "total": total,
         "typeid": typeid,
         "specificationid": specificationid,
         "floorid": floorid,
@@ -113,5 +117,9 @@ class Datum {
         "entrances": entrances,
         "door_operation": doorOperation,
         "power_supply": powerSupply,
+        "taxid": taxid,
+        "subtotal": subtotal,
+        "totaltax": totaltax,
+        "total": total,
     };
 }

@@ -46,6 +46,7 @@ class Datum {
     String address;
     String city;
     String state;
+    String countryid;
     String country;
     String zip;
     String toemail;
@@ -61,6 +62,7 @@ class Datum {
         required this.address,
         required this.city,
         required this.state,
+        required this.countryid,
         required this.country,
         required this.zip,
         required this.toemail,
@@ -77,6 +79,7 @@ class Datum {
         address: json["address"],
         city: json["city"],
         state: json["state"],
+        countryid: json["countryid"],
         country: json["country"],
         zip: json["zip"],
         toemail: json["toemail"],
@@ -93,6 +96,7 @@ class Datum {
         "address": address,
         "city": city,
         "state": state,
+        "countryid": countryid,
         "country": country,
         "zip": zip,
         "toemail": toemail,

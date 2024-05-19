@@ -27,8 +27,10 @@ class LeadsprofileController extends GetxController {
   TextEditingController city = TextEditingController();
   TextEditingController state = TextEditingController();
   TextEditingController zip = TextEditingController();
+  TextEditingController statusname = TextEditingController();
  
   RxString status = ''.obs;
+    
   RxString source = ''.obs;
   RxString countryname=''.obs;
 var data;
@@ -38,18 +40,18 @@ var data;
   List<LeadsProfileEditModel> get getleadeditprofile => _getleadeditprofile;
    RxBool isLeadsProfileeditLoad = true.obs;
    LeadEditProfileService leadEditProfileService=LeadEditProfileService();
-  Future leadprofileController() async {
+  Future leadprofileController({leadid}) async {
     isLeadsProfileLoad(true);
    
     try {
-      var response = await leadProfileService.leadProfileService();
+      var response = await leadProfileService.leadProfileService(leadid:leadid);
       log(response.toString());
       if (response != null) {
         _getleadprofile.clear();
         print('res---------------$response');
         _getleadprofile.add(response);
         name.text = _getleadprofile[0].data[0].name;
-        position.text = _getleadprofile[0].data[0].position;
+        position.text = _getleadprofile[0].data[0].position.toString();
         email.text = _getleadprofile[0].data[0].email;
         phonenumber.text = _getleadprofile[0].data[0].phonenumber;
         leadsvalue.text = _getleadprofile[0].data[0].leadValue;
@@ -59,11 +61,13 @@ var data;
         city.text = _getleadprofile[0].data[0].city;
         state.text = _getleadprofile[0].data[0].state;
         zip.text = _getleadprofile[0].data[0].zip;
-       countryname.value = _getleadprofile[0].data[0].country;
-        status.value = _getleadprofile[0].data[0].status;
-        source.value = _getleadprofile[0].data[0].source;
+       countryname.value = _getleadprofile[0].data[0].countryid.toString();
+        status(_getleadprofile.first.data.first.statusid.toString());
+          statusname.text=_getleadprofile.first.data.first.status.toString();
+        source.value = _getleadprofile[0].data[0].sourceid.toString();
         log('countrylog');
-       log(getleadprofile[0].data[0].country.toString());
+        
+       log(_getleadprofile.first.data.first.position);
      
 
         isLeadsProfileLoad(false);
@@ -85,7 +89,7 @@ var data;
       // }
     try {
       var response = await leadEditProfileService.leadProfileEditService(leadid: leadid,name: name.text,position: position.text,
-        email: email.text,phonenumber: phonenumber.text,value: leadsvalue.text,company: companyName.text,description: des.text,country: countryname.value.toString(),
+        email: email.text,phonenumber: phonenumber.text,value: leadsvalue.text,company: companyName.text,description: des.text,country: countryname.value,
         zip: zip.text,city: city.text,state: state.text,address: address.text,status: status.value.toString(),source: source.value.toString()
 );
       log(response.toString());
@@ -93,6 +97,7 @@ var data;
         _getleadeditprofile.clear();
         print('res---------------$response');
         _getleadeditprofile.add(response);
+       
        
            
       

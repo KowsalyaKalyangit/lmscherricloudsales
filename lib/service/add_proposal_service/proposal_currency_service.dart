@@ -27,7 +27,7 @@ class ProposalCurrencyService {
       log(response.body.toString());
 
       if (response.statusCode == 200) {
-        Fluttertoast.showToast(msg: jsonresponse['message']);
+       // Fluttertoast.showToast(msg: jsonresponse['message']);
         return ProposalCurrencyModel.fromJson(jsonresponse);
       } else {
         Fluttertoast.showToast(msg: jsonresponse['message'].toString());

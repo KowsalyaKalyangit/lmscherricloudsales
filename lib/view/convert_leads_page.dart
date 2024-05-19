@@ -25,12 +25,19 @@ class _ConvertedLeadsScreenState extends State<ConvertedLeadsScreen> {
       
       appBar: AppBar(
         centerTitle: true,
+        automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(Icons.arrow_back,color: screenbackground,),
+        ),
         backgroundColor: appcolor,title: Text('Converted Leads',style: toptitleStyle,),),
         body: Obx((){
 if(convertedLeadsController.isleadLoad.value){
   return Center(child: CircularProgressIndicator(),);
 }
-else if(convertedLeadsController.getnotification.isEmpty){
+else if(convertedLeadsController.getnotification[0].data.isEmpty){
   return Center(child: Text('No Data Found'),);
 }
 else{

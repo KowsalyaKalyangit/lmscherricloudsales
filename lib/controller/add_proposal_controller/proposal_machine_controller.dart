@@ -12,13 +12,14 @@ class ProposalMachineController extends GetxController {
   RxBool isproposalMachineLoad = true.obs;
   ProposalMachineService proposalMachineService = ProposalMachineService();
   Future proposalMachineController() async {
-    isproposalMachineLoad(true);
+    
     try {
       var response = await proposalMachineService.proposalMachineService();
       log(response.toString());
       if (response != null) {
         _proposalMachine.clear();
-        print('res---------------$response');
+        
+       
         _proposalMachine.add(response);
 
         isproposalMachineLoad(false);

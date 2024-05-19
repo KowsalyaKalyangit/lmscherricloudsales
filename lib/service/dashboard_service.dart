@@ -17,7 +17,7 @@ class DashboardService {
     try {
       var data = {
         "dashboard": "getdashboarddetails",
-        "staffid":staffid??""
+        "staffid":'2'
         
       };
         var jsonencode=jsonEncode(data);

@@ -12,7 +12,6 @@ class ProposalTravelAmtModel {
     int success;
     String status;
     String message;
-    int totalCount;
     String from;
     List<Datum> data;
 
@@ -20,7 +19,6 @@ class ProposalTravelAmtModel {
         required this.success,
         required this.status,
         required this.message,
-        required this.totalCount,
         required this.from,
         required this.data,
     });
@@ -29,7 +27,6 @@ class ProposalTravelAmtModel {
         success: json["success"],
         status: json["status"],
         message: json["message"],
-        totalCount: json["TotalCount"],
         from: json["From"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
     );
@@ -38,7 +35,6 @@ class ProposalTravelAmtModel {
         "success": success,
         "status": status,
         "message": message,
-        "TotalCount": totalCount,
         "From": from,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
     };
@@ -47,31 +43,43 @@ class ProposalTravelAmtModel {
 class Datum {
     String travelid;
     int stop;
+    String stopid;
     int opening;
+    String openingid;
     int subtotal;
+    int taxamount;
     int total;
 
     Datum({
         required this.travelid,
         required this.stop,
+        required this.stopid,
         required this.opening,
+        required this.openingid,
         required this.subtotal,
+        required this.taxamount,
         required this.total,
     });
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         travelid: json["travelid"],
         stop: json["stop"],
+        stopid: json["stopid"],
         opening: json["opening"],
+        openingid: json["openingid"],
         subtotal: json["subtotal"],
+        taxamount: json["taxamount"],
         total: json["total"],
     );
 
     Map<String, dynamic> toJson() => {
         "travelid": travelid,
         "stop": stop,
+        "stopid": stopid,
         "opening": opening,
+        "openingid": openingid,
         "subtotal": subtotal,
+        "taxamount": taxamount,
         "total": total,
     };
 }
